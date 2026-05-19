@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encrypt Global | Nuclear Obfuscator</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <span class="icon">💀</span>
+        <h1>ENCRYPT <span class="highlight">GLOBAL</span></h1>
+        <span class="badge">NUCLEAR</span>
+      </div>
+      <p class="subtitle">23 Protection Layers · 15 Anti-Debug Methods · Impossible to Deobfuscate</p>
+      <div class="contact-bar">
+        <a href="https://t.me/Xatanicvxii" target="_blank" class="telegram-link">
+          📱 @Xatanicvxii on Telegram
+        </a>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <!-- Upload Area -->
+      <div class="card upload-card">
+        <div class="card-header">
+          <span class="card-icon">📁</span>
+          <h3>Upload JavaScript File</h3>
+          <span class="badge-small">.js .mjs .txt</span>
+        </div>
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-icon">📂</div>
+          <p>Drag & drop file here or click to browse</p>
+          <p class="upload-hint">Maximum 5MB | All code will be fully obfuscated</p>
+          <input type="file" id="fileInput" accept=".js,.mjs,.txt" style="display: none;">
+          <button id="browseBtn" class="btn-browse">Browse Files</button>
+        </div>
+        <div id="fileInfo" class="file-info" style="display: none;">
+          <span class="file-icon">📄</span>
+          <span id="fileName"></span>
+          <span id="fileSize"></span>
+          <button id="removeFileBtn" class="btn-remove">✕</button>
+        </div>
+      </div>
+
+      <!-- Expiry Mode Selection (TERPISAH) -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-icon">⏰</span>
+          <h3>Expiry Mode</h3>
+          <span class="badge-small">Optional</span>
+        </div>
+        <div class="expiry-mode-selector">
+          <label class="mode-option">
+            <input type="radio" name="expiryMode" value="off" checked>
+            <div class="mode-card">
+              <span class="mode-icon">🔓</span>
+              <span class="mode-name">OFF</span>
+              <span class="mode-desc">No expiry - permanent</span>
+            </div>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="expiryMode" value="days">
+            <div class="mode-card">
+              <span class="mode-icon">📅</span>
+              <span class="mode-name">DAYS</span>
+              <span class="mode-desc">Expire after X days</span>
+            </div>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="expiryMode" value="date">
+            <div class="mode-card">
+              <span class="mode-icon">📆</span>
+              <span class="mode-name">SPECIFIC DATE</span>
+              <span class="mode-desc">Expire on exact date</span>
+            </div>
+          </label>
+        </div>
+        
+        <!-- Days mode input (hidden by default) -->
+        <div id="daysModeInput" class="expiry-input" style="display: none;">
+          <label>Expires after (days):</label>
+          <input type="range" id="daysSlider" min="1" max="365" value="7">
+          <span id="daysValue">7 days</span>
+          <div class="preset-buttons">
+            <button class="preset-day" data-days="1">1 day</button>
+            <button class="preset-day" data-days="7">7 days</button>
+            <button class="preset-day" data-days="30">30 days</button>
+            <button class="preset-day" data-days="90">90 days</button>
+            <button class="preset-day" data-days="365">1 year</button>
+          </div>
+        </div>
+        
+        <!-- Date mode input (hidden by default) -->
+        <div id="dateModeInput" class="expiry-input" style="display: none;">
+          <label>Expires on date:</label>
+          <input type="date" id="datePicker" min="">
+          <span class="date-preview" id="datePreview"></span>
+        </div>
+      </div>
+
+      <!-- Protection Info -->
+      <div class="features-card">
+        <div class="features-grid">
+          <div class="feature"><span class="feature-icon">🛡️</span>23 Layers</div>
+          <div class="feature"><span class="feature-icon">🐛</span>15 Anti-Debug</div>
+          <div class="feature"><span class="feature-icon">🔄</span>Flow Flattening</div>
+          <div class="feature"><span class="feature-icon">📦</span>Dispatcher</div>
+          <div class="feature"><span class="feature-icon">🔐</span>Security Hash</div>
+          <div class="feature"><span class="feature-icon">💀</span>Self-Defending</div>
+          <div class="feature"><span class="feature-icon">🔒</span>Tamper Proof</div>
+          <div class="feature"><span class="feature-icon">⚡</span>Junk Code</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="encryptBtn" class="btn-primary" disabled>
+          <span class="btn-icon">💀</span>
+          OBFUSCATE (23 LAYERS)
+        </button>
+      </div>
+
+      <!-- Output Section -->
+      <div class="card output-card">
+        <div class="card-header">
+          <span class="card-icon">📦</span>
+          <h3>Obfuscated Output</h3>
+          <div class="output-actions">
+            <button id="copyBtn" class="btn-small" disabled>📋 Copy</button>
+            <button id="downloadBtn" class="btn-small" disabled>💾 Download</button>
+          </div>
+        </div>
+        <div id="outputContainer">
+          <pre id="outputCode" class="code-display">Waiting for file upload...</pre>
+        </div>
+        <div id="hashInfo" class="hash-info"></div>
+        <div id="expiryInfo" class="expiry-info"></div>
+        <div id="statsInfo" class="stats-info"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© 2024 Encrypt Global Nuclear by <strong>@Xatanicvxii</strong> | 100% Hard - Impossible to Deobfuscate</p>
+      <p class="warning">⚠️ Obfuscated code has 23 protection layers - debugging will cause immediate crash</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
